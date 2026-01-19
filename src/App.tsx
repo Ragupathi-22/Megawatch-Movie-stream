@@ -30,7 +30,25 @@ export function App() {
       isAdmin: false
     });
   };
-  return <div className="min-h-screen bg-black text-white font-sans">
-      {state.view === 'landing' ? <LandingPage onJoin={handleJoin} /> : <RoomPage roomId={state.roomId} username={state.username} isAdmin={state.isAdmin} onLeave={handleLeave} />}
-    </div>;
+  return     <div className="min-h-screen bg-black text-white font-sans flex flex-col">
+      {/* Main content */}
+      <div className="flex-1">
+        {state.view === 'landing' ? (
+          <LandingPage onJoin={handleJoin} />
+        ) : (
+          <RoomPage
+            roomId={state.roomId}
+            username={state.username}
+            isAdmin={state.isAdmin}
+            onLeave={handleLeave}
+          />
+        )}
+      </div>
+
+      {/* Footer */}
+      <footer className="text-center text-xs text-gray-400 py-3 border-t border-gray-800">
+        Made with ❤️ by R for G
+      </footer>
+    </div>
+
 }

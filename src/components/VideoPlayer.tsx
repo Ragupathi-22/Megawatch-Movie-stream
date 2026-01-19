@@ -11,7 +11,7 @@ import {
   SkipForward,
 } from 'lucide-react'
 import { VideoState } from '../utils/types'
-import { getYouTubeVideoId } from '../utils/socket'
+import { getYouTubeVideoId } from '../utils/firebase'
 interface VideoPlayerProps {
   videoState: VideoState
   onUpdateState: (
@@ -65,7 +65,7 @@ export function VideoPlayer({ videoState, onUpdateState }: VideoPlayerProps) {
       },
       events: {
         onReady: () => {
-          console.log('YouTube player ready')
+          // console.log('YouTube player ready')
         },
         onStateChange: (event: any) => {
           const state = event.data
