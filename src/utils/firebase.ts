@@ -196,28 +196,24 @@ export class RoomService {
   /* ---------------- CLEANUP ---------------- */
 
   public async disconnect() {
-    try {
-      const presenceRef = ref(
-        database,
-        `rooms/${this.roomId}/presence/${this.userId}`,
-      )
-      await remove(presenceRef)
+  try {
+    const presenceRef = ref(
+      database,
+      `rooms/${this.roomId}/presence/${this.userId}`
+    )
 
-      this.unsubscribers.forEach((fn) => fn())
-      this.unsubscribers = []
+    // Remove only THIS user
+    await remove(presenceRef)
 
-      const presenceListRef = ref(database, `rooms/${this.roomId}/presence`)
-      const snapshot = await get(presenceListRef)
+    // Unsubscribe listeners
+    this.unsubscribers.forEach((unsub) => unsub())
+    this.unsubscribers = []
 
-      if (!snapshot.exists()) {
-        await remove(ref(database, `rooms/${this.roomId}`))
-      }
-
-      this.isReady = false
-    } catch (err) {
-      console.error('Disconnect error', err)
-    }
+    this.isReady = false
+  } catch (error) {
+    console.error('Disconnect error:', error)
   }
+}
 
   public isConnected() {
     return this.isReady
