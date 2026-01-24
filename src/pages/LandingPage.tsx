@@ -43,7 +43,7 @@ export function LandingPage({ onJoin }: LandingPageProps) {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600 to-blue-600 mb-6 shadow-xl shadow-violet-900/30">
             <Play size={32} fill="currentColor" className="text-white ml-1" />
           </div>
-          <h1 className="text-4xl font-bold mb-3 tracking-tight">MegaWatch</h1>
+          <h1 className="text-4xl font-bold mb-3 tracking-tight">TogetherPlay</h1>
           <p className="text-zinc-400 text-lg">
             Watch videos together in real-time sync.
           </p>
